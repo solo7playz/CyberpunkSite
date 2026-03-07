@@ -1,5 +1,3 @@
-// const { json } = require("express");
-
 document.addEventListener("DOMContentLoaded", function(){
     const btn = document.querySelector(".btn-main");
     if(btn)
@@ -217,7 +215,6 @@ document.getElementById('openModalBtn').addEventListener('click', function () {
 
         if (!isValid) return;
 
-        // Отправка данных
         submitBtn.disabled = true;
         submitBtn.textContent = 'Отправка...';
 
