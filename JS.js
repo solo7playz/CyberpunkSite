@@ -1,4 +1,59 @@
-// const { json } = require("express");
+let registerName = "";
+
+document.addEventListener("DOMContentLoaded", function(){
+    window.addEventListener('load', async function(){
+        try{
+            const response = await fetch("http://localhost:5009/loadName", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify("data")
+            });
+
+            if(!response.ok){
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || `HTTP error ${response.status}`);
+            }
+            const result = await response.json();
+            registerName = result.message;
+        } catch (error){
+            console.error("Error: ", error);
+            alert(error.message);
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function(){
+    btn = document.querySelector(".btn-calc");
+    let expression;
+    btn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        try{
+            const responseName = await fetch("http://localhost:5009/loadName", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify("")
+            });
+            registerName = await responseName.json().message;
+            alert(`Здравствуй, ${registerName}`);
+            expression = prompt("Введите выражение:");
+            const response = await fetch("http://localhost:5009/calc", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(expression)
+            });
+
+            if(!response.ok){
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || `HTTP error ${response.status}`);
+            }
+            const result = await response.json();
+            alert(result.message);
+        } catch (error){
+            console.error("Error: ", error);
+            alert(error.message);
+        }
+    });
+});
 
 document.addEventListener("DOMContentLoaded", function(){
     const btn = document.querySelector(".btn-main");
@@ -35,40 +90,8 @@ window.addEventListener('scroll', () => {
 });
 
 document.addEventListener("DOMContentLoaded", function(){
-    btnToHome.addEventListener('click', function(){window.scrollTo({top: 0})})
+    btnToHome.addEventListener('click', function(){window.scrollTo({top: 0});})
 });
-
-document.addEventListener("DOMContentLoaded", function(){
-    btn = document.querySelector(".btn-calc");
-    let expression;
-    btn.addEventListener('click', async (e) => {
-        e.preventDefault();
-        expression = prompt("Введите выражение:");
-        try{
-            const response = await fetch("http://localhost:5009/application", {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(expression)
-            });
-
-            if(!response.ok){
-                const errorData = await response.json().catch(() => ({}));
-                throw new Error(errorData.message || `HTTP error ${response.status}`);
-            }
-            const result = await response.json();
-            alert(result.message);
-            // const request = await fetch("http://localhost:5009/application", {
-            // method: "GET",
-            // headers: {'Content-Type': 'application/json'},
-            // body: JSON.stringify(expression)
-            // });
-            form.reset();
-        } catch (error){
-            console.error("Error: ", error);
-            alert(error.message);
-        }
-    })
-})
 
 const btnToHome = document.createElement('button')
 btnToHome.textContent = "↑";
@@ -125,6 +148,27 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function(){
+    const btn = document.querySelector(".btn-cabinet");
+    btn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        window.open('file:///C:/Users/user/source/repos/HTML_HW1/Cabinet.html', "_blank");
+        window.close();
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function(){
+    const btn = document.querySelector(".btn-reg");
+    btn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        window.open('file:///C:/Users/user/source/repos/HTML_HW1/Register.html', "_blank");
+        window.close();
+    });
+});
+
+
+
 
 document.getElementById('openModalBtn').addEventListener('click', function () {
     const overlay = document.createElement('div');
@@ -217,7 +261,6 @@ document.getElementById('openModalBtn').addEventListener('click', function () {
 
         if (!isValid) return;
 
-        // Отправка данных
         submitBtn.disabled = true;
         submitBtn.textContent = 'Отправка...';
 

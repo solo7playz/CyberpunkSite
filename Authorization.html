@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorization</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth; 
+        }
+        body{
+            background-image: url("pictures/Cyberpunk-2077-Neon-Logo.gif");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            text-align: center;
+        }
+        h1{
+            margin: 30px auto;
+            text-align: center;
+            font-size: 2rem;
+            color: yellow;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        form {
+            margin: 30px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+            color: yellow;
+            min-width: 400px;
+            border-radius: 10px;
+            box-shadow: black 2px;
+        }
+        input, textarea{
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 1rem;
+            background-color: #333;
+        }
+        .btn-submit-register{
+            background-color: yellow;
+            box-shadow: yellow 2px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="changeText">Вход</h1>
+    <form action="#">
+        <label for="name">Имя</label>
+        <input type="text" id="name" placeholder="Введите ваше имя" required>
+        
+        <label for="password">Пароль</label>
+        <input type="password" id="password" placeholder="Пароль" required>
+        
+        <label for="email">Почта</label>
+        <input type="email" id="email" placeholder="example@mail.ru" required>
+
+        <button type="submit" id="btn" class="btn-submit-register">Войти</button>
+    </form>
+</body>
+<script src="authorization.js"></script>
+</html>
